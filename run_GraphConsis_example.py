@@ -71,7 +71,7 @@ def main():
 
     embed_dim = args.embed_dim
 
-    path_data = '../data/' + args.data + ".pkl"
+    path_data = 'data/' + args.data + ".pkl"
     data_file = open(path_data, 'rb')
 
     history_u_lists, history_ur_lists, history_v_lists, history_vr_lists, traindata, validdata, testdata, social_adj_lists, item_adj_lists, ratings_list = pickle.load(
