@@ -1,7 +1,7 @@
 ## ConsisRec
 Code for paper "ConsisRec: Enhancing GNN for Social Recommendation via Consistent Neighbor Aggregation"
 
-How to use:
+## How to use:
 
 bash train.sh
 
@@ -16,7 +16,7 @@ paper link: https://arxiv.org/pdf/2105.02254
 	publisher={ACM}  
 }
 
-paper link: https://arxiv.org/pdf/1902.07243.pdf
+paper link: https://arxiv.org/pdf/1902.07243.pdf  
 @inproceedings{fan2019graph,  
   title={Graph neural networks for social recommendation},  
   author={Fan, Wenqi and Ma, Yao and Li, Qing and He, Yuan and Zhao, Eric and Tang, Jiliang and Yin, Dawei},  
