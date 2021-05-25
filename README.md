@@ -5,6 +5,18 @@ Code for paper "ConsisRec: Enhancing GNN for Social Recommendation via Consisten
 
 bash train.sh
 
+## Requirements
+
+* python 3.8
+* torch 1.7.1
+* numpy  1.20.0
+* sklearn
+
+## Useful Resources
+- [Code for some traditional and social recommendation methods](https://github.com/hongleizhang/RSAlgorithms)
+- [Code for GraphRec](https://github.com/wenqifan03/GraphRec-WWW19) 
+- [Paper summary for social recommendation](https://github.com/Weizhi-Ying/Social-Recommendation)
+
 If you use this code, please cite:
 
 paper link: https://arxiv.org/pdf/2105.02254  
@@ -26,15 +38,4 @@ paper link: https://arxiv.org/pdf/1902.07243.pdf
 }
 
 
-## Requirements
-
-* python 3.8
-* torch 1.7.1
-* numpy  1.20.0
-* sklearn
-
-## Useful Resources
-- [Code for some traditional and social recommendation methods](https://github.com/hongleizhang/RSAlgorithms)
-- [Code for GraphRec](https://github.com/wenqifan03/GraphRec-WWW19) 
-- [Paper summary for social recommendation](https://github.com/Weizhi-Ying/Social-Recommendation)
 
