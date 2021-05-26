@@ -8,7 +8,7 @@ import pickle
 class Node_Encoder(nn.Module):
 
     def __init__(self, u2e, v2e, embed_dim, history_u_lists, history_ur_lists,
-                history_v_lists, history_vr_lists, social_adj_lists, item_adj_lists, aggregator, cuda="cpu"):
+                history_v_lists, history_vr_lists, social_adj_lists, item_adj_lists, aggregator, percent, cuda="cpu"):
         super(Node_Encoder, self).__init__()
 
         self.u2e = u2e
@@ -22,6 +22,7 @@ class Node_Encoder(nn.Module):
         self.aggregator = aggregator
         self.embed_dim = embed_dim
         self.device = cuda
+        self.p = percent
         self.linear1 = nn.Linear(2 * self.embed_dim, self.embed_dim)
         self.linear2 = nn.Linear(2 * self.embed_dim, self.embed_dim)
         self.bn1 = nn.BatchNorm1d(self.embed_dim)
@@ -45,7 +46,7 @@ class Node_Encoder(nn.Module):
                 tmp_adj.append(list(self.social_adj_lists[int(nodes[i])]))
                 self_feats = self.u2e.weight[nodes]
                 target_feats = self.v2e.weight[nodes_target]
-        neigh_feats = self.aggregator.forward(self_feats, target_feats, tmp_history_uv, tmp_history_r, tmp_adj, uv, 0.3)
+        neigh_feats = self.aggregator.forward(self_feats, target_feats, tmp_history_uv, tmp_history_r, tmp_adj, uv, self.p)
         combined = torch.cat((self_feats, neigh_feats), dim = -1)
         combined = F.relu(self.linear1(combined))
 

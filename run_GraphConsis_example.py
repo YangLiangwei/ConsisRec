@@ -57,6 +57,7 @@ def main():
     # Training settings
     parser = argparse.ArgumentParser(description='Social Recommendation: GraphConsis model')
     parser.add_argument('--batch_size', type=int, default=128, metavar='N', help='input batch size for training')
+    parser.add_argument('--percent', type=float, default=0.4, help='neighbor percent')
     parser.add_argument('--embed_dim', type=int, default=64, metavar='N', help='embedding size')
     parser.add_argument('--lr', type=float, default=0.001, metavar='LR', help='learning rate')
     parser.add_argument('--test_batch_size', type=int, default=1000, metavar='N', help='input batch size for testing')
@@ -64,6 +65,7 @@ def main():
     parser.add_argument('--load_from_checkpoint', type=bool, default=False, help='Load from checkpoint or not')
     parser.add_argument('--device', type=str, default='cpu', help='cpu or cuda')
     parser.add_argument('--data', type = str)
+    parser.add_argument('--weight_decay', type=float, default=0.0001, help='weight_decay')
     args = parser.parse_args()
 
     # os.environ['CUDA_VISIBLE_DEVICES'] = '0'
@@ -111,12 +113,11 @@ def main():
     r2e = nn.Embedding(num_ratings + 1, embed_dim).to(device)
     #node_feature
     node_agg = Node_Aggregator(v2e, r2e, u2e, embed_dim, r2e.num_embeddings - 1, cuda=device)
-    node_enc = Node_Encoder(u2e, v2e, embed_dim, history_u_lists, history_ur_lists, history_v_lists, history_vr_lists,
-                              social_adj_lists, item_adj_lists, node_agg, cuda=device)
+    node_enc = Node_Encoder(u2e, v2e, embed_dim, history_u_lists, history_ur_lists, history_v_lists, history_vr_lists, social_adj_lists, item_adj_lists, node_agg, percent=args.percent,  cuda=device)
 
     # model
     graphconsis = GraphConsis(node_enc, r2e).to(device)
-    optimizer = torch.optim.Adam(graphconsis.parameters(), lr=args.lr, weight_decay = 0.0001)
+    optimizer = torch.optim.Adam(graphconsis.parameters(), lr=args.lr, weight_decay = args.weight_decay)
 
     # load from checkpoint
     if args.load_from_checkpoint == True:
