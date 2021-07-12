@@ -64,7 +64,7 @@ def main():
     parser.add_argument('--epochs', type=int, default=100, metavar='N', help='number of epochs to train')
     parser.add_argument('--load_from_checkpoint', type=bool, default=False, help='Load from checkpoint or not')
     parser.add_argument('--device', type=str, default='cpu', help='cpu or cuda')
-    parser.add_argument('--data', type = str)
+    parser.add_argument('--data', type = str, default='ciao')
     parser.add_argument('--weight_decay', type=float, default=0.0001, help='weight_decay')
     args = parser.parse_args()
 
