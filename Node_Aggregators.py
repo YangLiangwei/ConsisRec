@@ -14,7 +14,7 @@ class Node_Aggregator(nn.Module):
         self.relation_token = relation_token
         self.device = cuda
         self.embed_dim = embed_dim
-        self.relation_att = torch.randn(2 * embed_dim, requires_grad=True).to(self.device)
+        self.relation_att = nn.Parameter(torch.randn(2 * embed_dim, requires_grad=True).to(self.device))
         self.linear = nn.Linear(2 * embed_dim, embed_dim)
         self.softmax1 = nn.Softmax(dim = 0)
         self.softmax2 = nn.Softmax(dim = 0)
